@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'home/index'
   resources :characters
   resources :sessions
   resources :campaigns
