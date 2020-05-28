@@ -35,6 +35,11 @@ class CharactersController < ApplicationController
 
     end
 
+    def destroy 
+        @character = Character.find_by(id: params[:id])
+        @character.destroy
+        redirect_to user_path(current_user)
+    end
     private 
 
     def character_params 
