@@ -24,7 +24,14 @@ class CharactersController < ApplicationController
     end
 
     def update
-        
+        @user = current_user
+        @character = Character.find_by(id: params[:id])
+        @character.update(character_params)
+        if @character.save 
+            redirect_to character_path(@character)
+        else 
+            render edit_character_path(@character)
+        end
 
     end
 
