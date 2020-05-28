@@ -1,0 +1,23 @@
+<%= form_with model: @character, local: true do |f| %>
+    <p>
+        <%= f.label :name %><br>
+        <%= f.text_field :name %>
+    </p>
+
+    <p>
+        <%= f.label :level %><br>
+        <%= f.number_field :level %>
+    </p>
+
+    <p>
+        <%= f.label :race %><br>
+        <%= f.text_field :race %>
+    </p>
+
+    <p>
+        <%= f.label :character_class %><br>
+        <%= f.text_field :character_class %>
+    </p>
+
+    <p><%= f.submit %></p>
+<% end %>
