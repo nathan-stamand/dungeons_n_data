@@ -18,6 +18,16 @@ class CharactersController < ApplicationController
         @character = Character.find_by(id: params[:id])
     end
 
+    def edit
+        @character = Character.find_by(id: params[:id])
+        @user = current_user
+    end
+
+    def update
+        
+
+    end
+
     private 
 
     def character_params 
