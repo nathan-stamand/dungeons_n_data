@@ -5,12 +5,17 @@ class CharactersController < ApplicationController
 
     def create 
         @character = Character.new(character_params)
-        @character.player = current_user     
+        @character.player = current_user
         if @character.save 
             redirect_to character_path(@character)
         else 
             render new_character_path
         end
+    end
+
+    def show
+        @user = current_user
+        @character = Character.find_by(id: params[:id])
     end
 
     private 
