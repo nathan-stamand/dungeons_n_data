@@ -5,6 +5,12 @@ class CharactersController < ApplicationController
 
     def create 
         @character = Character.new(character_params)
+        @character.player = current_user     
+        if @character.save 
+            redirect_to character_path(@character)
+        else 
+            render new_character_path
+        end
     end
 
     private 
