@@ -1,4 +1,10 @@
 class CharactersController < ApplicationController
+    
+    def index
+        @user = current_user 
+        @characters = @user.characters
+    end
+    
     def new
         @character = Character.new
     end
@@ -38,7 +44,7 @@ class CharactersController < ApplicationController
     def destroy 
         @character = Character.find_by(id: params[:id])
         @character.destroy
-        redirect_to user_path(current_user)
+        redirect_to user_characters_path(current_user)
     end
     private 
 
