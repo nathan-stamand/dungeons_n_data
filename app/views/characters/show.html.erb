@@ -2,4 +2,6 @@
 <p><%= @user.username %>'s character</p>
 
 <p>Race: <%= @character.race %></p>
-<p>Class: <%= @character.character_class %><p>
+<p>Class: <%= @character.character_class %><p><br>
+
+<%= button_to 'Delete', character_path(@character), method: :delete, data: {confirm: "Are you sure??"} %>
