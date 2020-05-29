@@ -6,4 +6,5 @@ class Campaign < ApplicationRecord
     has_many :player_campaigns
     has_many :players, through: :player_campaigns
     has_many :characters, through: :players
+    validates :title, presence: true
 end
