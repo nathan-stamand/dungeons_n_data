@@ -10,13 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_29_175347) do
+ActiveRecord::Schema.define(version: 2020_05_29_180904) do
 
   create_table "campaigns", force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "dungeon_master_id"
     t.integer "user_id"
   end
 
