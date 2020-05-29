@@ -6,4 +6,11 @@ class CampaignsController < ApplicationController
         @created_campaigns = @user.created_campaigns
     end
 
+    def new
+        @campaign = Campaign.new
+    end
+
+    def create 
+        
+    end
 end
