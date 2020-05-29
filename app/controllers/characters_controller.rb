@@ -20,8 +20,9 @@ class CharactersController < ApplicationController
     end
 
     def show
-        @user = current_user
         @character = Character.find_by(id: params[:id])
+        @user = current_user
+        @creator = @character.player
     end
 
     def edit

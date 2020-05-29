@@ -1,5 +1,5 @@
 <h1><%= @character.name %>, lv <%= @character.level %></h1>
-<p><%= @user.username %>'s character</p>
+<p><%= link_to @creator.username, user_path(@creator) %>'s character</p>
 
 <p>Race: <%= @character.race %></p>
 <p>Class: <%= @character.character_class %><p><br>
