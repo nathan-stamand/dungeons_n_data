@@ -20,6 +20,12 @@ class CampaignsController < ApplicationController
         end
     end
 
+    def show
+        @campaign = Campaign.find_by(id: params[:id])
+        @dungeon_master = @campaign.dungeon_master
+        @user = current_user
+    end
+
     private 
 
     def campaign_params
