@@ -4,4 +4,6 @@
 <p>Race: <%= @character.race %></p>
 <p>Class: <%= @character.character_class %><p><br>
 
+<%= button_to 'Edit', edit_character_path(@character), method: :get %><br>
+
 <%= button_to 'Delete', character_path(@character), method: :delete, data: {confirm: "Are you sure??"} %>
