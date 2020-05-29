@@ -13,4 +13,10 @@ class CampaignsController < ApplicationController
     def create 
         
     end
+
+    private 
+
+    def campaign_params
+        params.require(:campaign).permit(:title)
+    end
 end
