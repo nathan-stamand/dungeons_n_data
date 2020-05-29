@@ -13,7 +13,11 @@ class CampaignsController < ApplicationController
     def create 
         @user = current_user
         @campaign = @user.created_campaigns.build(campaign_params)
-        binding.pry
+        if @campaign.save
+            redirect_to user_campaign_path(@user, @campaign)
+        else
+            render new_campaign_path
+        end
     end
 
     private 
