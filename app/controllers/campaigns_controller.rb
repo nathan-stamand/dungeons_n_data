@@ -11,7 +11,9 @@ class CampaignsController < ApplicationController
     end
 
     def create 
-        
+        @campaign = Campaign.new(campaign_params)
+        @campaign.dungeon_master = current_user
+        binding.pry
     end
 
     private 
