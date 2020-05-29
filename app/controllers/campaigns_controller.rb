@@ -26,6 +26,22 @@ class CampaignsController < ApplicationController
         @user = current_user
     end
 
+    def edit
+        @campaign = Campaign.find_by(id: params[:id])
+        @dungeon_master = @campaign.dungeon_master
+    end
+
+    def update
+        @campaign = Campaign.find_by(id: params[:id])
+        @user = @campaign.dungeon_master
+        @campaign.update(campaign_params)
+        if @campaign.save
+            redirect_to user_campaign_path(@user, @campaign)
+        else
+            render "edit"
+        end
+    end
+
     private 
 
     def campaign_params
