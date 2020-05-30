@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     resources :sessions 
   end 
 
+  get "/users/login", to: "users#login"
+  post "/users/login", to: "users#login"
   resources :users do
     resources :characters
     resources :campaigns
