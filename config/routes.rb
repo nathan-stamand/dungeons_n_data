@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get '/', to: "home#index"
+  root "home#index"
   resources :characters
   resources :sessions
 
@@ -9,6 +10,7 @@ Rails.application.routes.draw do
 
   get "/users/login", to: "users#login"
   post "/users/login", to: "users#login"
+  get "/users/logout", to: "users#logout"
   resources :users do
     resources :characters
     resources :campaigns
