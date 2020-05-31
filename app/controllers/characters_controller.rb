@@ -1,8 +1,8 @@
 class CharactersController < ApplicationController
     
     def index
-        @user = User.find_by(id: params[:user_id])
-        @characters = @user.characters
+        @creator = User.find_by(id: params[:user_id])
+        @characters = @creator.characters
     end
     
     def new

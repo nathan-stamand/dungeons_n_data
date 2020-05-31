@@ -1,10 +1,10 @@
-<h1><%= @user.username %>'s Campaigns</h1>
+<h1><%= @creator.username %>'s Campaigns</h1>
 
 <h3>Created Campaigns</h3>
 <ul>
 <% @created_campaigns.each do |campaign| %>
     <li>
-    <%= link_to campaign.title, user_campaign_path(@user, campaign) %>
+    <%= link_to campaign.title, user_campaign_path(@creator, campaign) %>
     </li>
 <% end %>
 </ul><br>
