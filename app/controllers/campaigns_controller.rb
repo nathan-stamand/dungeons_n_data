@@ -1,6 +1,7 @@
 class CampaignsController < ApplicationController
 
     def index
+        @user = current_user
         @creator = User.find_by(id: params[:user_id])
         @play_campaigns = @creator.play_campaigns
         @created_campaigns = @creator.created_campaigns
