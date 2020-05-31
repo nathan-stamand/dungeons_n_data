@@ -1,3 +1,3 @@
 <h1><%= @user.username %></h1>
-<%# Link to @user's created_campaigns, play_campaigns, characters %>
+<%= link_to "Campaigns", user_campaigns_path(@user) %>
 <%= link_to "Characters", user_characters_path(@user) %>
