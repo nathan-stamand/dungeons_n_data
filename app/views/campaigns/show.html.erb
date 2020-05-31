@@ -1,6 +1,6 @@
 <h1><%= @campaign.title %></h1>
 
-<p>by: <%= @dungeon_master.username %></p>
+<p>by: <%= link_to @dungeon_master.username, user_path(@dungeon_master) %></p>
 
 <ul>
 <% @campaign.players.each do |player| %>
