@@ -1,0 +1,19 @@
+<h1><%= @user.username %>'s Campaigns</h1>
+
+<h3>Created Campaigns</h3>
+<ul>
+<% @created_campaigns.each do |campaign| %>
+    <li>
+    <%= link_to campaign.title, user_campaign_path(@user, campaign) %>
+    </li>
+<% end %>
+</ul><br>
+
+<h3>Play Campaigns</h1>
+<ul>
+<% @play_campaigns.each do |campaign| %>
+    <li>
+    <%= link_to campaign.title, user_campaign_path(campaign.dungeon_master, campaign) %>
+    </li>
+<% end %>
+</ul>
