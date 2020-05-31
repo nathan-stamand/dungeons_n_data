@@ -1,9 +1,9 @@
 class CampaignsController < ApplicationController
 
     def index
-        @user = User.find_by(id: params[:user_id])
-        @play_campaigns = @user.play_campaigns
-        @created_campaigns = @user.created_campaigns
+        @creator = User.find_by(id: params[:user_id])
+        @play_campaigns = @creator.play_campaigns
+        @created_campaigns = @creator.created_campaigns
     end
 
     def new
