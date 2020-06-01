@@ -11,6 +11,7 @@ class SessionsController < ApplicationController
     end
 
     def create
+        binding.pry
     end
 
     def edit
@@ -23,6 +24,14 @@ class SessionsController < ApplicationController
     end
 
     def destroy
+    end
+
+    private
+
+    def find_hours
+        @start = params[:session][:start_time].to_time
+        @end = params[:session][:end_time].to_time
+        @hours = ((@end - @start).to_f/3600).to_f
     end
 
 end
