@@ -18,5 +18,12 @@
     <%= f.text_field :title %><br>
     </p>
 
+  Add Player:
+    <%= f.select(:players) do %>
+        <% User.all.each do |user| %>
+            <%= content_tag(:option, user.username, value: user.id) %>
+        <% end %>
+    <% end%>
+    <br>
     <p><%= f.submit %></p>
 <% end %>
