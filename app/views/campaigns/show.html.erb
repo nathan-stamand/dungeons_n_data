@@ -2,6 +2,7 @@
 
 <p>by: <%= link_to @dungeon_master.username, user_path(@dungeon_master) %></p>
 
+<h3>Players</h3>
 <ul>
 <% @campaign.players.each do |player| %>
     <li>
