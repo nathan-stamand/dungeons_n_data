@@ -11,6 +11,8 @@ class SessionsController < ApplicationController
     end
 
     def create
+        @session = Session.new(session_params)
+        @session.find_hours(params)
         binding.pry
     end
 
@@ -31,5 +33,5 @@ class SessionsController < ApplicationController
     def session_params 
         params.require(:session).permit(:start_time, :end_time, :place, :date, :campaign_id)
     end 
-    
+
 end
