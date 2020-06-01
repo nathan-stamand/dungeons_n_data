@@ -12,8 +12,15 @@ class SessionsController < ApplicationController
 
     def create
         @session = Session.new(session_params)
+        @campaign = Campaign.find_by(id: params[:session][:campaign_id])
         @session.find_hours(params)
-        binding.pry
+        if @session.save
+            @campaign.sessions << @session 
+            @campaign.save
+            redirect_to campaign_sessions_path(@campaign)
+        else
+            render new_campaign_session_path(@camaign)
+        end
     end
 
     def edit
