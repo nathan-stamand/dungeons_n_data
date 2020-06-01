@@ -13,6 +13,8 @@
     <%= f.label :place %>
     <%= f.text_field :place %><br><br>
 
+    <input type=hidden name="session[campaign_id]" id="session_campaign_id" value="<%= @campaign.id %>">
+
     <%= f.submit %>
     
 <% end %>
