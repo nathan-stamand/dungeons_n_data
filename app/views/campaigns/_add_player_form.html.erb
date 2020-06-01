@@ -1,0 +1,7 @@
+<%= form_for @campaign do |f| %>
+    <%= f.select(:players) do %>
+        <% User.all.each do |user| %>
+            <%= content_tag(:option, user.username, value: user.id) %>
+        <% end %>
+    <% end%>
+<% end %>
