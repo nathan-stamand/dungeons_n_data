@@ -1,6 +1,7 @@
 <h1>Characters</h1>
 
-<%= link_to "Add Character", new_user_character_path(@creator)%><br><br>
+<%= link_to "Add Character", new_user_character_path(@creator)%><br>
+<%= link_to "#{@creator.username}'s Page", user_path(@creator) %><br><br>
 
 <% if @characters %>
     <% @characters.each do |char| %>
