@@ -15,6 +15,7 @@ class CampaignsController < ApplicationController
         @user = current_user
         @campaign = @user.created_campaigns.build(campaign_params)
         if @campaign.save
+            @campaign.add_player(params)
             redirect_to user_campaign_path(@user, @campaign)
         else
             render new_campaign_path
