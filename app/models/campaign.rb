@@ -15,4 +15,13 @@ class Campaign < ApplicationRecord
     end
   end
 
+  def recent_sessions
+    @sessions = self.sessions.sort{|sesh_1, sesh_2| sesh_1.date.to_time <=> sesh_2.date.to_time}
+    if self.sessions.length > 3
+      [@sessions[-1], @sessions[-2], @sessions[-3]]
+    else 
+      @sessions.reverse
+    end
+  end
+
 end
