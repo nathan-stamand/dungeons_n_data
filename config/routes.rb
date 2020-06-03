@@ -2,10 +2,10 @@ Rails.application.routes.draw do
   get '/', to: "home#index"
   root "home#index"
   resources :characters
-  resources :sessions
+  resources :dnd_sessions
 
   resources :campaigns do 
-    resources :sessions 
+    resources :dnd_sessions 
   end 
 
   get "/users/login", to: "users#login"
