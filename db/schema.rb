@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_01_170107) do
+ActiveRecord::Schema.define(version: 2020_06_03_142517) do
 
   create_table "campaigns", force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
+    t.string "description"
   end
 
   create_table "characters", force: :cascade do |t|
@@ -27,6 +28,10 @@ ActiveRecord::Schema.define(version: 2020_06_01_170107) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
+    t.string "alignment"
+    t.integer "max_hit_points"
+    t.integer "current_hit_points"
+    t.integer "damage"
   end
 
   create_table "player_campaigns", force: :cascade do |t|
@@ -43,6 +48,7 @@ ActiveRecord::Schema.define(version: 2020_06_01_170107) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "end_time"
     t.string "date"
+    t.string "dm_notes"
   end
 
   create_table "users", force: :cascade do |t|
