@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root "home#index"
   resources :characters
   resources :dnd_sessions
-
+  get '/auth/google_oauth2/callback' => 'sessions#omniauth'
   resources :campaigns do 
     resources :dnd_sessions 
   end 
