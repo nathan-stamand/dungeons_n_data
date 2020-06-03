@@ -1,44 +1,32 @@
-class SessionsController < ApplicationController
+class SessionsController < ApplicationController 
 
-    def index
-        @campaign = Campaign.find_by(id: params[:campaign_id])
-        @sessions = @campaign.sessions
-    end
+    def create 
+        @user = User.find_by(username: params[:user][:username])
 
-    def new
-        @campaign = Campaign.find_by(id: params[:campaign_id])
-        @session = Session.new
-    end
-
-    def create
-        @session = Session.new(session_params)
-        @campaign = Campaign.find_by(id: params[:session][:campaign_id])
-        @session.find_hours(params)
-        if @session.save
-            @campaign.sessions << @session 
-            @campaign.save
-            redirect_to campaign_sessions_path(@campaign)
-        else
-            render new_campaign_session_path(@camaign)
+        if @user.try(:authenticate, params[:user][:password])
+            session[:user_id] = @user.id 
+            redirect_to user_path(@user)
+        else 
+            flash[:message] = "Sorry, login info was incorrect. Please try again."
+            redirect_to login_path 
         end
-    end
-
-    def edit
-    end
-
-    def update
-    end
-
-    def show
-    end
-
-    def destroy
-    end
-
-    private
-
-    def session_params 
-        params.require(:session).permit(:start_time, :end_time, :place, :date, :campaign_id)
     end 
 
+    def omniauth
+    
+        @user = User.find_or_create_by(email: auth[:info][:email]) do |u|
+            u.username = auth[:info][:email]
+            u.password = SecureRandom.hex
+            u.uid = auth[:uid]
+        end
+        binding.pry
+        session[:user_id] = @user.id
+        redirect_to user_path(@user)
+    end
+
+    private 
+
+    def auth 
+        request.env['omniauth.auth']
+    end
 end
