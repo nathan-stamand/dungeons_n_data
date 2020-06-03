@@ -1,5 +1,5 @@
 class Campaign < ApplicationRecord
-    has_many :sessions
+    has_many :dnd_sessions
     belongs_to :dungeon_master, 
       :class_name => "User",
       :foreign_key => :user_id
@@ -16,8 +16,8 @@ class Campaign < ApplicationRecord
   end
 
   def recent_sessions
-    @sessions = self.sessions.sort{|sesh_1, sesh_2| sesh_1.date.to_time <=> sesh_2.date.to_time}
-    if self.sessions.length > 3
+    @sessions = self.dnd_sessions.sort{|sesh_1, sesh_2| sesh_1.date.to_time <=> sesh_2.date.to_time}
+    if self.dnd_sessions.length > 3
       [@sessions[-1], @sessions[-2], @sessions[-3]]
     else 
       @sessions.reverse
