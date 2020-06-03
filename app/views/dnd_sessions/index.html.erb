@@ -3,7 +3,7 @@
 <ul>
 <% @sessions.each do |session| %>
     <li>
-        <%= link_to session.date, campaign_session_path(@campaign, session) %>
+        <%= link_to session.date, campaign_dnd_session_path(@campaign, session) %>
     </li>
 <% end %>
 </ul>
