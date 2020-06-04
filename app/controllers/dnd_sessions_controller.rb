@@ -7,7 +7,7 @@ class DndSessionsController < ApplicationController
 
     def new
         @campaign = Campaign.find_by(id: params[:campaign_id])
-        @session = Session.new
+        @session = DndSession.new
     end
 
     def create
