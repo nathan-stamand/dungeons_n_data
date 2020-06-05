@@ -19,7 +19,6 @@ class SessionsController < ApplicationController
             u.password = SecureRandom.hex
             u.uid = auth[:uid]
         end
-        binding.pry
         session[:user_id] = @user.id
         redirect_to user_path(@user)
     end
