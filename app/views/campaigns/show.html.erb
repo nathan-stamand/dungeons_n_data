@@ -4,9 +4,9 @@
 
 <h3>Players</h3>
 <ul>
-<% @campaign.players.each do |player| %>
-    <li>
-        <%= link_to player.username, user_path(player) %>
+<% @campaign.characters.each do |character| %>
+    <li class="<%= character.status %>">
+        <%= link_to character.name, user_character_path(character.player, character) %> {<%= character.status %>} - <%= character.player.username %>
     </li>
 <% end %>
 </ul><br><br>
