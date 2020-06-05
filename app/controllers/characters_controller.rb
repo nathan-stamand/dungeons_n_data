@@ -7,6 +7,7 @@ class CharactersController < ApplicationController
     
     def new
         @character = Character.new
+        @creator = User.find_by(id: params[:user_id])
     end
 
     def create 
@@ -21,17 +22,15 @@ class CharactersController < ApplicationController
 
     def show
         @character = Character.find_by(id: params[:id])
-        @user = current_user
         @creator = @character.player
     end
 
     def edit
         @character = Character.find_by(id: params[:id])
-        @user = current_user
+        @creator = @character.player
     end
 
     def update
-        @user = current_user
         @character = Character.find_by(id: params[:id])
         @character.update(character_params)
         if @character.save 
@@ -44,8 +43,11 @@ class CharactersController < ApplicationController
 
     def destroy 
         @character = Character.find_by(id: params[:id])
-        @character.destroy
-        redirect_to user_characters_path(current_user)
+        @creator = @character.player 
+        if check
+            @character.destroy
+        end
+        redirect_to user_characters_path(@creator)
     end
     private 
 
