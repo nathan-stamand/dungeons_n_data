@@ -2,7 +2,7 @@
 
 <p>by: <%= link_to @dungeon_master.username, user_path(@dungeon_master) %></p>
 
-<h3>Players</h3>
+<h3>Party</h3>
 <ul>
 <% @campaign.characters.each do |character| %>
     <li class="<%= character.status %>">
