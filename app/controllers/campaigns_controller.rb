@@ -31,7 +31,7 @@ class CampaignsController < ApplicationController
 
     def edit
         @campaign = Campaign.find_by(id: params[:id])
-        @dungeon_master = @campaign.dungeon_master
+        @creator = @campaign.dungeon_master
     end
 
     def update
