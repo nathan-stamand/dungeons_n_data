@@ -15,4 +15,13 @@ class Character < ApplicationRecord
             "alive"
         end
     end
+
+    def damageable 
+        self.damage = 0 
+        self.current_hit_points = self.max_hit_points
+    end
+
+    def take_damage 
+        self.current_hit_points = self.max_hit_points - self.damage
+    end
 end
