@@ -26,7 +26,7 @@ class CharactersController < ApplicationController
         @creator = @character.player
         if params[:character]
           @character.take_damage(params[:character][:damage])
-          @character.save 
+          @character.save
         end
     end
 
