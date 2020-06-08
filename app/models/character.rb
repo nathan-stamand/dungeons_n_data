@@ -21,7 +21,8 @@ class Character < ApplicationRecord
         self.current_hit_points = self.max_hit_points
     end
 
-    def take_damage 
-        self.current_hit_points = self.max_hit_points - self.damage
+    def take_damage(damage)
+        self.damage += damage.to_i
+        self.current_hit_points = self.max_hit_points - self.damage 
     end
 end
