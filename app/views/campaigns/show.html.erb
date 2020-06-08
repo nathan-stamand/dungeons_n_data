@@ -3,24 +3,29 @@
 <p>by: <%= link_to @creator.username, user_path(@creator) %></p>
 
 <% if @campaign.characters.any? %>
-<h3>Party</h3>
-<ul>
+  <h3>Party</h3>
+
+  <ul>
     <% @campaign.characters.each do |character| %>
-        <li class="<%= character.status %>">
-            <%= link_to character.name, user_character_path(character.player, character) %> {<%= character.status %>} - <%= character.player.username %>
-        </li>
+      <li class="<%= character.status %>">
+      <%= link_to character.name, user_character_path(character.player, character) %> {<%= character.status %>} - <%= character.player.username %>
+      </li>
     <% end %>
-</ul>
+  </ul>
 <% end %>
 <br><br>
 
 <h3>Recent Sessions</h3>
+
 <%= button_to "New Session", new_campaign_dnd_session_path(@campaign), {method: :get} %>
+
 <ul>
-<% @recent_sessions.each do |session| %>
+  <% @recent_sessions.each do |session| %>
     <li>
-        <%= link_to "#{session.date} at #{session.place}", campaign_dnd_session_path(@campaign, session) %>
+    <%= link_to "#{session.date} at #{session.place}", campaign_dnd_session_path(@campaign, session) %>
     </li>
-<% end %>
+  <% end %>
+</ul>
 <br>
+
 <%= link_to "See All Sessions for #{@campaign.title}", campaign_dnd_sessions_path(@campaign) %>

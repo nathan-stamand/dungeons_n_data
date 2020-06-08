@@ -4,18 +4,18 @@
 
 <h3>Created Campaigns</h3>
 <ul>
-<% @created_campaigns.each do |campaign| %>
+  <% @created_campaigns.each do |campaign| %>
     <li>
     <%= link_to campaign.title, user_campaign_path(@creator, campaign) %>
     </li>
-<% end %>
+  <% end %>
 </ul><br>
 
 <h3>Play Campaigns</h1>
 <ul>
-<% @play_campaigns.each do |campaign| %>
+  <% @play_campaigns.each do |campaign| %>
     <li>
     <%= link_to campaign.title, user_campaign_path(campaign.dungeon_master, campaign) %>
     </li>
-<% end %>
+  <% end %>
 </ul>

@@ -1,23 +1,22 @@
 <h1>Sign Up Here for a DND Account!</h1>
 
 <%= form_with scope: :user, url: users_path, local: true do |f| %>
-    <p>
-        <%= f.label :username %><br>
-        <%= f.text_field :username %>
-    </p>
+  <p>
+    <%= f.label :username %><br>
+    <%= f.text_field :username %>
+  </p>
 
-    <p>
-        <%= f.label :email %><br>
-        <%= f.text_field :email %>
-    </p> 
+  <p>
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </p>
 
-    <p>
-        <%= f.label :password %><br>
-        <%= f.password_field :password %>
-    <p>
+  <p>
+    <%= f.label :password %><br>
+    <%= f.password_field :password %>
+  <p>
 
-    <p><%= f.submit %></p>
-
+  <p><%= f.submit %></p>
 <% end %>
 
-<%= link_to "Sign Up or Log In with Google", "/auth/google_oauth2" %> 
+<%= link_to "Sign Up or Log In with Google", "/auth/google_oauth2" %>

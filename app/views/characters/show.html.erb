@@ -1,21 +1,19 @@
 <h1><%= @character.name %>, lv <%= @character.level %></h1>
+
 <p><%= link_to @creator.username, user_path(@creator) %>'s character</p>
 
 <p>Race: <%= @character.race %></p>
 <p>Class: <%= @character.character_class %><p>
-<p>Max Hit Points: <%= @character.max_hit_points %></p>
-<br>
+<p>Max Hit Points: <%= @character.max_hit_points %></p><br>
 
 <% if check %>
+  <p>Current Hit Points: <%= @character.current_hit_points %>
 
-    <p>Current Hit Points: <%= @character.current_hit_points %>
-
-    <%= form_for @character do |f| %>
-
-        <p><em>Tip: type negative numbers to heal your character.</em></p>
-
-        <%= f.number_field :damage, value: "" %>
-        <%= f.submit "Take Damage" %>
+  <%= form_for @character do |f| %>
+    <p><em>Tip: type negative numbers to heal your character.</em></p>
+    
+    <%= f.number_field :damage, value: "" %>
+    <%= f.submit "Take Damage" %>
 
     <% end %><br>
 
