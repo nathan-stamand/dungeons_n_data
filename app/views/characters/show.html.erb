@@ -7,12 +7,18 @@
 <br>
 
 <% if check %>
+
     <p>Current Hit Points: <%= @character.current_hit_points %>
+
     <%= form_for @character do |f| %>
+
         <p><em>Tip: type negative numbers to heal your character.</em></p>
+
         <%= f.number_field :damage, value: "" %>
         <%= f.submit "Take Damage" %>
+
     <% end %><br>
+
     <%= button_to 'Edit', edit_character_path(@character), method: :get %><br>
 
     <%= button_to 'Delete', character_path(@character), method: :delete, data: {confirm: "Are you sure??"} %>
