@@ -2,8 +2,6 @@ class Character < ApplicationRecord
     belongs_to :player,
     :class_name => "User",
     :foreign_key => :user_id
-    include ActiveModel::Validations
-    validates_with CharacterValidator
 
     def status
         if current_hit_points < 1 
@@ -22,10 +20,14 @@ class Character < ApplicationRecord
 
     def take_damage(damage)
         self.damage += damage.to_i
-        self.current_hit_points = self.max_hit_points - self.damage 
-        if self.current_hit_points > self.max_hit_points 
-            self.current_hit_points = self.max_hit_points 
+        self.current_hit_points = self.max_hit_points - self.damage
+        case
+        when self.current_hit_points > self.max_hit_points
+            self.current_hit_points = self.max_hit_points
             self.damage = 0
+        when self.current_hit_points < (self.max_hit_points * -1)
+            self.current_hit_points = (self.max_hit_points * -1)
+            self.damage = self.max_hit_points * 2
         end
     end
 end
