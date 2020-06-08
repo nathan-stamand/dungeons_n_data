@@ -9,7 +9,9 @@
 <% if check %>
     <p>Current Hit Points: <%= @character.current_hit_points %>
     <%= form_for @character do |f| %>
-        Take Damage: <%= f.number_field :damage %>
+        <p><em>Tip: type negative numbers to heal your character.</em></p>
+        <%= f.number_field :damage, value: "", min: -@character.max_hit_points, max: @character.max_hit_points * 3 %>
+        <%= f.submit "Take Damage" %>
     <% end %><br>
     <%= button_to 'Edit', edit_character_path(@character), method: :get %><br>
 
