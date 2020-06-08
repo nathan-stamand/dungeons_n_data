@@ -24,6 +24,10 @@ class CharactersController < ApplicationController
     def show
         @character = Character.find_by(id: params[:id])
         @creator = @character.player
+        if params[:character]
+          @character.take_damage(params[:character][:damage])
+          @character.save 
+        end
     end
 
     def edit
