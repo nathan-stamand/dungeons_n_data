@@ -33,5 +33,15 @@
         <%= f.text_field :character_class %>
     </p>
 
+    <p>
+        <%= f.label :alignment %><br>
+        <%= f.text_field :alignment %>
+    </p>
+
+    <p>
+        <%= f.label :max_hit_points %><br>
+        <%= f.number_field :max_hit_points %>
+    </p>
+
     <p><%= f.submit %></p>
 <% end %>
