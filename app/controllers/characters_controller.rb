@@ -13,6 +13,7 @@ class CharactersController < ApplicationController
     def create 
         @character = Character.new(character_params)
         @character.player = current_user
+        @character.damageable
         if @character.save 
             redirect_to character_path(@character)
         else 
