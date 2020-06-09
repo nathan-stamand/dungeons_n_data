@@ -5,7 +5,7 @@
 <p>Race: <%= @character.race %></p>
 <p>Class: <%= @character.character_class %><p>
 <p>Max Hit Points: <%= @character.max_hit_points %></p>
-<p>Current Campaign: <%= @character.campaign.title %></p><br>
+<p>Current Campaign: <%= @character.campaign.title if @character.campaign %></p><br>
 
 <% if check %>
   <p>Current Hit Points: <%= @character.current_hit_points %>
@@ -19,6 +19,7 @@
   <%= form_for @character do |f| %>
     Assign to a Campaign
     <%= f.collection_select(:campaign_id, @creator.play_campaigns, :id, :title, {:include_blank => 'None'}) %>
+    <input type="hidden" name="character[old_campaign_id]" value="<%= @character.campaign.id if @character.campaign %>">
     <%= f.submit "Assign to Campaign" %>
   <% end %><br>
 
