@@ -7,15 +7,15 @@ class DndSessionsController < ApplicationController
 
   def new
     @campaign = Campaign.find_by(id: params[:campaign_id])
-    @session = DndSession.new
+    @dnd_session = DndSession.new
   end
 
   def create
-      @session = DndSession.new(dnd_session_params)
-      @campaign = Campaign.find_by(id: params[:session][:campaign_id])
-      @session.find_hours(params)
-    if @session.save
-      @campaign.dnd_sessions << @session
+      @dnd_session = DndSession.new(dnd_session_params)
+      @campaign = Campaign.find_by(id: params[:dnd_session][:campaign_id])
+      @dnd_session.find_hours(params)
+    if @dnd_session.save
+      @campaign.dnd_sessions << @dnd_session
       @campaign.save
       redirect_to campaign_dnd_sessions_path(@campaign)
     else
