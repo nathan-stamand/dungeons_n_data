@@ -1,19 +1,19 @@
 <h1>New Session for <%= @campaign.title %></h1>
 
-<%= form_with model: @session, local: true do |f| %>
-  <%= label_tag :session_date %>
-  <input type="date" id="session_date" name="session[date]"><br><br>
+<%= form_with model: @dnd_session, local: true do |f| %>
+  <%= label_tag "Date" %>
+  <input type="date" id="session_date" name="dnd_session[date]"><br><br>
 
-  <%= label_tag :session_start_time %>
-  <input type="time" id="session_start_time" name="session[start_time]"><br><br>
+  <%= label_tag "Start Time" %>
+  <input type="time" id="dnd_session_start_time" name="dnd_session[start_time]"><br><br>
 
-  <%= label_tag :session_end_time %>
-  <input type="time" id="session_end_time" name="session[end_time]"><br><br>
+  <%= label_tag "End Time" %>
+  <input type="time" id="dnd_session_end_time" name="dnd_session[end_time]"><br><br>
 
   <%= f.label :place %>
   <%= f.text_field :place %><br><br>
 
-  <input type=hidden name="session[campaign_id]" id="session_campaign_id" value="<%= @campaign.id %>">
+  <input type=hidden name="dnd_session[campaign_id]" id="dnd_session_campaign_id" value="<%= @campaign.id %>">
 
   <%= f.submit %>
 <% end %>
