@@ -13,6 +13,7 @@ class CharactersController < ApplicationController
   def create 
     @character = Character.new(character_params)
     @character.player = current_user
+    @creator = @character.player
     @character.damageable
     if @character.save
       redirect_to character_path(@character)
@@ -26,6 +27,11 @@ class CharactersController < ApplicationController
     @creator = @character.player
     if params[:character]
       @character.take_damage(params[:character][:damage])
+      @old_campaign = Campaign.find_by(id: params[:character][:old_campaign_id])
+      @campaign = Campaign.find_by(id: params[:character][:campaign_id])
+      @character.campaign = @campaign
+      @old_campaign.save if @old_campaign
+      @campaign.save if @campaign
       @character.save
     end
   end
@@ -56,6 +62,7 @@ class CharactersController < ApplicationController
 
   def character_params
     params.require(:character).permit(:name, :level, :character_class,
-                                      :race, :max_hit_points, :alignment)
+                                      :race, :max_hit_points, :alignment,
+                                      :campaign_id)
   end
 end
