@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_03_204709) do
+ActiveRecord::Schema.define(version: 2020_06_09_163058) do
 
   create_table "campaigns", force: :cascade do |t|
     t.string "title"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 2020_06_03_204709) do
     t.integer "max_hit_points"
     t.integer "current_hit_points"
     t.integer "damage"
+    t.integer "campaign_id"
   end
 
   create_table "dnd_sessions", force: :cascade do |t|
