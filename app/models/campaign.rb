@@ -5,7 +5,7 @@ class Campaign < ApplicationRecord
                :foreign_key => :user_id
     has_many :player_campaigns
     has_many :players, through: :player_campaigns
-    has_many :characters, through: :players
+    has_many :characters
     validates :title, presence: true
 
   def add_player(params)
