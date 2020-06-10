@@ -26,7 +26,7 @@ class CampaignsController < ApplicationController
     @campaign = Campaign.find_by(id: params[:id])
     @creator = @campaign.dungeon_master
     @user = current_user
-    @recent_sessions = @campaign.recent_sessions
+    @recent_sessions = @campaign.dnd_sessions.recently_made
   end
 
   def edit
