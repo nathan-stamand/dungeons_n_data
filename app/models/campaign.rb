@@ -15,12 +15,17 @@ class Campaign < ApplicationRecord
     end
   end
 
-  def recent_sessions
-    @sessions = self.dnd_sessions.sort{|sesh_1, sesh_2| sesh_1.date.to_time <=> sesh_2.date.to_time}
-    if self.dnd_sessions.length > 3
-      [@sessions[-1], @sessions[-2], @sessions[-3]]
-    else
-      @sessions.reverse
+  def set_sessions(params)
+    time_filter = params[:dnd_session]
+    notes = params[:dm_notes].to_i
+    sessions = self.dnd_sessions
+    case
+    when time_filter == "Created Last 30 Days" 
+      notes > 0 ? sessions.recently_made.with_notes : sessions.recently_made
+    when time_filter == "Updated Last 30 Days"
+      notes > 0 ? sessions.recently_changed.with_notes : sessions.recently_changed
+    when time_filter == ""
+      notes > 0 ? sessions.with_notes : sessions
     end
   end
 end
