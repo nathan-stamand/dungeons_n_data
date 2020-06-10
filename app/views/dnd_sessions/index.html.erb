@@ -1,9 +1,21 @@
 <h1><%= @campaign.title %>'s Sessions</h1>
 
-<ul>
-  <% @sessions.each do |session| %>
-    <li>
-    <%= link_to session.date, campaign_dnd_session_path(@campaign, session) %>
-    </li>
+<div>
+  <h3>Filter Sessions:</h3>
+  <%= form_tag(campaign_dnd_sessions_path(@campaign), method: "get") do %>
+    <%= select_tag :dnd_session, options_for_select(["Created Last 30 Days", "Updated Last 30 Days"]),
+    include_blank: true %>
+    with Session Notes?<%= check_box_tag('dm_notes') %><br><br>
+    <%= submit_tag "Filter" %>
   <% end %>
-</ul>
+</div>  
+
+<% if @sessions %>
+  <ul>
+    <% @sessions.each do |session| %>
+      <li>
+      <%= link_to session.date, campaign_dnd_session_path(@campaign, session) %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
