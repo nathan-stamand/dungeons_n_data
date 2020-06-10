@@ -2,7 +2,7 @@ class DndSessionsController < ApplicationController
 
   def index
     @campaign = Campaign.find_by(id: params[:campaign_id])
-    @sessions = @campaign.dnd_sessions
+    @sessions = @campaign.set_sessions(params)
   end
 
   def new
