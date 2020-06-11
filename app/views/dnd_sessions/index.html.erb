@@ -3,9 +3,14 @@
 <div>
   <h3>Filter Sessions:</h3>
   <%= form_tag(campaign_dnd_sessions_path(@campaign), method: "get") do %>
+    Recently Created or Modified:
     <%= select_tag :dnd_session, options_for_select(["Created Last 30 Days", "Updated Last 30 Days"]),
     include_blank: true %>
-    with Session Notes?<%= check_box_tag('dm_notes') %><br><br>
+    <% if check %>
+      <br>
+      with Session Notes?<%= check_box_tag('dm_notes') %>
+    <% end %><br><br>
+
     <%= submit_tag "Filter" %>
   <% end %>
 </div>  
