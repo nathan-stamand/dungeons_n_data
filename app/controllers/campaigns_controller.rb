@@ -39,11 +39,18 @@ class CampaignsController < ApplicationController
     @campaign = Campaign.find_by(id: params[:id])
     @creator = @campaign.dungeon_master
     @campaign.update(campaign_params)
+    @campaign.add_player(params)
     if @campaign.save
       redirect_to user_campaign_path(@creator, @campaign)
     else
       render "edit"
     end
+  end
+
+  def destroy
+    @campaign = Campaign.find_by(id: params[:id])
+    @campaign.destroy if current_user == @campaign.dungeon_master
+    redirect_to user_campaigns_path(current_user)
   end
 
   private
