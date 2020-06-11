@@ -7,6 +7,7 @@ class DndSessionsController < ApplicationController
 
   def new
     @campaign = Campaign.find_by(id: params[:campaign_id])
+    @creator = @campaign.dungeon_master
     @dnd_session = DndSession.new
   end
 
