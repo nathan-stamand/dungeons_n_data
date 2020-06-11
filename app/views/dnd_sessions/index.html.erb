@@ -13,7 +13,9 @@
 
     <%= submit_tag "Filter" %>
   <% end %>
-</div>  
+</div><br>
+
+<%= link_to "Return to #{@campaign.title}", user_campaign_path(@campaign.dungeon_master, @campaign) %>
 
 <% if @sessions %>
   <ul>
