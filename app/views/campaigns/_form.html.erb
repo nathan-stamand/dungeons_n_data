@@ -19,7 +19,7 @@
     </p>
 
   Add Player: <br>
-    <%= f.select :players, User.all.collect {|user| [user.username, user.id]}, include_blank: true %>
+    <%= f.select :players, user_list.collect {|user| [user.username, user.id]}, include_blank: true %>
     <br>
     <p><%= f.submit %></p>
 <% end %>
