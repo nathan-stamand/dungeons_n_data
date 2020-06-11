@@ -2,6 +2,16 @@
 
 <p>by: <%= link_to @creator.username, user_path(@creator) %></p>
 
+<% if check %>
+  <%= button_to "Edit/Add Player", edit_user_campaign_path(@user, @campaign), method: "get" %><br>
+  <%= button_to "Delete Campaign", @campaign, method: "delete" %>
+<% end %>
+
+<% if @campaign.players.any? %>
+<h3>Players</h3>
+  <%= @campaign.players.collect{|player| player.username}.join(', ') %>
+<% end %>
+
 <% if @campaign.characters.any? %>
   <h3>Party</h3>
 
