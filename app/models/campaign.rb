@@ -9,7 +9,7 @@ class Campaign < ApplicationRecord
     validates :title, presence: true
 
   def add_player(params)
-    if params[:campaign][:players]
+    if params[:campaign][:players] != ""
         @player = User.find_by(id: params[:campaign][:players])
         @join = PlayerCampaign.create(user_id: @player.id, campaign_id: self.id)
     end
