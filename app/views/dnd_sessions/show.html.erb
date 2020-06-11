@@ -1,0 +1,15 @@
+<h1><%= @campaign.title %></h1>
+
+<p>Date: <%= @dnd_session.date %></p>
+
+<p>Start: <%= @dnd_session.start_time %></p>
+
+<p>End: <%= @dnd_session.end_time %></p>
+
+<p>Hours: <%= @dnd_session.hours %></p>
+
+<p>Place: <%= @dnd_session.place %></p>
+
+<% if check && @dnd_session.dm_notes %>
+  <p>Notes: <%= @dnd_session.dm_notes %></p>
+<% end %>
