@@ -2,7 +2,7 @@ class DndSessionsController < ApplicationController
 
   def index
     @campaign = Campaign.find_by(id: params[:campaign_id])
-    @sessions = @campaign.set_sessions(params)
+    @sessions = @campaign.set_sessions(params) || @campaign.dnd_sessions
   end
 
   def new
@@ -55,5 +55,4 @@ class DndSessionsController < ApplicationController
   def dnd_session_params
     params.require(:dnd_session).permit(:start_time, :end_time, :place, :date, :campaign_id, :dm_notes)
   end
-
 end
