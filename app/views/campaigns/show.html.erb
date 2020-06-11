@@ -17,7 +17,9 @@
 
 <h3>Recent Sessions</h3>
 
-<%= button_to "New Session", new_campaign_dnd_session_path(@campaign), {method: :get} %>
+  <% if check %>
+    <%= button_to "New Session", new_campaign_dnd_session_path(@campaign), {method: :get} %>
+  <% end %>
 
 <ul>
   <% @recent_sessions.each do |session| %>
