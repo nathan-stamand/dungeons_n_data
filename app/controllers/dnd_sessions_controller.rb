@@ -1,7 +1,7 @@
 class DndSessionsController < ApplicationController
+  before_action :assign_variables
 
   def index
-    @campaign = Campaign.find_by(id: params[:campaign_id])
     @sessions = @campaign.set_sessions(params) || @campaign.dnd_sessions
   end
 
@@ -25,15 +25,9 @@ class DndSessionsController < ApplicationController
   end
 
   def edit
-    @dnd_session = DndSession.find_by(id: params[:id])
-    @campaign = @dnd_session.campaign
-    @creator = @campaign.dungeon_master
   end
 
   def update
-    @dnd_session = DndSession.find_by(id: params[:id])
-    @campaign = @dnd_session.campaign
-    @creator = @campaign.dungeon_master
     if @dnd_session.update(dnd_session_params)
       redirect_to campaign_dnd_session_path(@campaign, @dnd_session)
     else  
@@ -42,15 +36,9 @@ class DndSessionsController < ApplicationController
   end
 
   def show
-    @campaign = Campaign.find_by(id: params[:campaign_id])
-    @dnd_session = DndSession.find_by(id: params[:id])
-    @creator = @campaign.dungeon_master
   end
 
   def destroy
-    @dnd_session = DndSession.find_by(id: params[:id])
-    @campaign = @dnd_session.campaign
-    @creator = @campaign.dungeon_master
     @dnd_session.destroy if check 
     @campaign.save
     binding.pry
@@ -61,5 +49,11 @@ class DndSessionsController < ApplicationController
 
   def dnd_session_params
     params.require(:dnd_session).permit(:start_time, :end_time, :place, :date, :campaign_id, :dm_notes)
+  end
+
+  def assign_variables 
+    @dnd_session = DndSession.find_by(id: params[:id])
+    @campaign = Campaign.find_by(id: params[:campaign_id]) || @dnd_session.campaign
+    @creator = @campaign.dungeon_master
   end
 end
