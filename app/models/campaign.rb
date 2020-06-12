@@ -1,9 +1,9 @@
 class Campaign < ApplicationRecord
-    has_many :dnd_sessions
+    has_many :dnd_sessions, dependent: :destroy
     belongs_to :dungeon_master,
                :class_name => "User",
                :foreign_key => :user_id
-    has_many :player_campaigns
+    has_many :player_campaigns, dependent: :destroy
     has_many :players, through: :player_campaigns
     has_many :characters
     validates :title, presence: true

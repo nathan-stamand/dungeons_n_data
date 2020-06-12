@@ -1,5 +1,9 @@
 class DndSession < ApplicationRecord
   belongs_to :campaign
+  validates :date, presence: :true
+  validates :start_time, presence: :true
+  validates :end_time, presence: :true
+  validates :place, presence: :true
   scope :recently_changed, -> {where("updated_at > ?", Time.now - 2592000)}
   scope :recently_made, -> {where("created_at > ?", Time.now - 2592000)}
   scope :with_notes, -> {where.not(dm_notes: [nil, ''])}

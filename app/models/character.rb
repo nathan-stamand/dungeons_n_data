@@ -3,6 +3,9 @@ class Character < ApplicationRecord
              :class_name => "User",
              :foreign_key => :user_id
   belongs_to :campaign, required: false
+  validates :name, presence: :true
+  validates :level, presence: :true, numericality: {only_integer: true}
+  validates :max_hit_points, presence: :true, numericality: {only_integer: true}
 
   def status
     if current_hit_points < 1
