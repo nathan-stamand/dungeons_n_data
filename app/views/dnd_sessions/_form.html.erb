@@ -1,12 +1,12 @@
 <%= form_with model: @dnd_session, local: true do |f| %>
-  <%= label_tag "Date" %>
-  <input type="date" id="session_date" name="dnd_session[date]"><br><br>
+  <%= f.label :date %>
+  <%= f.date_field :date, value: "#{@dnd_session.date}" %><br><br>
 
-  <%= label_tag "Start Time" %>
-  <input type="time" id="dnd_session_start_time" name="dnd_session[start_time]"><br><br>
+  <%= f.label :start_time %>
+  <%= f.time_field :start_time, value: "#{@dnd_session.start_time}" %><br><br>
 
-  <%= label_tag "End Time" %>
-  <input type="time" id="dnd_session_end_time" name="dnd_session[end_time]"><br><br>
+  <%= f.label :end_time %>
+  <%= f.time_field :end_time, value: "#{@dnd_session.end_time}" %><br><br>
 
   <%= f.label :place %>
   <%= f.text_field :place %><br><br>
