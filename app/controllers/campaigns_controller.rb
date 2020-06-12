@@ -1,8 +1,8 @@
 class CampaignsController < ApplicationController
+  before_action :assign_variables
   before_action :delete_doubles
 
   def index
-    @user = current_user
     @creator = User.find_by(id: params[:user_id])
     @play_campaigns = @creator.play_campaigns
     @created_campaigns = @creator.created_campaigns
@@ -13,7 +13,6 @@ class CampaignsController < ApplicationController
   end
 
   def create
-    @user = current_user
     @campaign = @user.created_campaigns.build(campaign_params)
     if @campaign.save_and_add_players(params)
       redirect_to user_campaign_path(@user, @campaign)
@@ -23,22 +22,14 @@ class CampaignsController < ApplicationController
   end
 
   def show
-    @campaign = Campaign.find_by(id: params[:id])
-    @creator = @campaign.dungeon_master
-    @user = current_user
     @recent_sessions = @campaign.dnd_sessions.recently_made
     @campaign.removals(params)
   end
 
   def edit
-    @campaign = Campaign.find_by(id: params[:id])
-    @creator = @campaign.dungeon_master
-    @user = current_user
   end
 
   def update
-    @campaign = Campaign.find_by(id: params[:id])
-    @creator = @campaign.dungeon_master
     @campaign.update(campaign_params)
     @campaign.add_player(params)
     if @campaign.save
@@ -60,8 +51,13 @@ class CampaignsController < ApplicationController
     params.require(:campaign).permit(:title)
   end
 
+  def assign_variables
+    @campaign = Campaign.find_by(id: params[:id])
+    @creator = @campaign.dungeon_master if @campaign
+  end
+
   def delete_doubles
-    if @campaign = Campaign.find_by(id: params[:id])
+    if @campaign
       @campaign.players = @campaign.players.uniq
     end
   end
