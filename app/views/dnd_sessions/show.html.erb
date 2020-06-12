@@ -10,8 +10,12 @@
 
 <p>Place: <%= @dnd_session.place %></p>
 
-<% if check && @dnd_session.dm_notes %>
-  <p>Notes: <%= @dnd_session.dm_notes %></p>
+<% if check %>
+  <p>Notes: <%= @dnd_session.dm_notes %></p><br>
+
+  <%= button_to 'Edit', edit_dnd_session_path(id: @dnd_session, campaign_id: @campaign.id), method: :get %><br>
+
+  <%= button_to 'Delete', dnd_session_path(@dnd_session), method: :delete, data: {confirm: "Are you sure??"} %>
 <% end %>
 <br><br>
 
