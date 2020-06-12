@@ -1,4 +1,10 @@
 <h1><%= @user.username %></h1>
 
-<%= link_to "Campaigns", user_campaigns_path(@user) %>
-<%= link_to "Characters", user_characters_path(@user) %>
+<% if @user.friends %>
+<h4>Friends</h3>
+  <% @user.friends.each do |friend| %>
+    <li>
+    <%= link_to friend.username, user_path(friend) %>
+    </li>
+  <% end %>
+<% end %>
