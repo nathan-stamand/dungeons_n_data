@@ -1,8 +1,4 @@
 module CampaignsHelper
-  def user_list
-    User.all.find_all {|user| user if user != current_user}
-  end
-
   def player_select 
     user_list.collect{|user| [user.username, user.id]}
   end
