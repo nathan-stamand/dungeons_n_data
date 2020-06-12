@@ -1,6 +1,8 @@
 <h1><%= @creator.username %>'s Campaigns</h1>
 
-<%= button_to "Create New Campaign", new_user_campaign_path(@user), {method: :get} %><br>
+<% if check %>
+  <%= button_to "Create New Campaign", new_user_campaign_path(@user), {method: :get} %><br>
+<% end %>
 
 <h3>Created Campaigns</h3>
 <ul>
