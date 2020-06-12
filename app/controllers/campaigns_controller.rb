@@ -1,4 +1,5 @@
 class CampaignsController < ApplicationController
+  before_action :delete_doubles
 
   def index
     @user = current_user
@@ -14,8 +15,7 @@ class CampaignsController < ApplicationController
   def create
     @user = current_user
     @campaign = @user.created_campaigns.build(campaign_params)
-    if @campaign.save
-      @campaign.add_player(params)
+    if @campaign.save_and_add_players(params)
       redirect_to user_campaign_path(@user, @campaign)
     else
       render new_campaign_path
@@ -27,6 +27,7 @@ class CampaignsController < ApplicationController
     @creator = @campaign.dungeon_master
     @user = current_user
     @recent_sessions = @campaign.dnd_sessions.recently_made
+    @campaign.removals(params)
   end
 
   def edit
@@ -57,5 +58,11 @@ class CampaignsController < ApplicationController
 
   def campaign_params
     params.require(:campaign).permit(:title)
+  end
+
+  def delete_doubles
+    if @campaign = Campaign.find_by(id: params[:id])
+      @campaign.players = @campaign.players.uniq
+    end
   end
 end
