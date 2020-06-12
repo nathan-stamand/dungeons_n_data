@@ -48,6 +48,13 @@ class DndSessionsController < ApplicationController
   end
 
   def destroy
+    @dnd_session = DndSession.find_by(id: params[:id])
+    @campaign = @dnd_session.campaign
+    @creator = @campaign.dungeon_master
+    @dnd_session.destroy if check 
+    @campaign.save
+    binding.pry
+    redirect_to campaign_path(@campaign)
   end
 
   private
