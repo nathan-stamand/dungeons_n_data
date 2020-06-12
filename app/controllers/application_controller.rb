@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
     if check
       render '_form', :layout => false
     else
-      redirect_to user_path(@creator)
+      redirect_to user_path(current_user)
     end
   end
-  end
+end
