@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
 
   def form_check
     if check
-      render '_form'
+      render '_form', :layout => false
     else
       redirect_to user_path(@creator)
     end
