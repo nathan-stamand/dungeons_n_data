@@ -9,7 +9,10 @@
 
 <% if @campaign.players.any? %>
 <h3>Players</h3>
-  <%= @campaign.players.collect{|player| player.username}.join(', ') %>
+  <% @campaign.players.each do |player| %>
+    <%= link_to player.username, user_path(player) %>
+    <%= link_to "remove", user_campaign_path(user_id: @creator.id, id: @campaign.id, remove_player: player.id) if check %>
+  <% end %>
 <% end %>
 
 <% if @campaign.characters.any? %>
@@ -18,7 +21,9 @@
   <ul>
     <% @campaign.characters.each do |character| %>
       <li class="<%= character.status %>">
-      <%= link_to character.name, user_character_path(character.player, character) %> {<%= character.status %>} - <%= character.player.username %>
+      <%= link_to character.name, user_character_path(character.player, character) %> 
+      {<%= character.status %>} - <%= character.player.username %>
+      <%= link_to "remove", user_campaign_path(user_id: @creator.id, id: @campaign.id, remove_character: "#{character.id}") if check %>
       </li>
     <% end %>
   </ul>
