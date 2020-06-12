@@ -9,4 +9,20 @@ class User < ApplicationRecord
   validates :email, presence: :true
   validates :username, presence: :true
   has_secure_password
+
+  def friends 
+    friends = []
+    if self.play_campaigns
+      self.play_campaigns.each do |campaign| 
+        friends << campaign.dungeon_master
+        friends << campaign.players 
+      end 
+    end
+    if self.created_campaigns 
+      self.created_campaigns.each do |campaign|
+        friends << campaign.players
+      end
+    end
+    friends = friends.flatten.uniq - [self]
+  end
 end
