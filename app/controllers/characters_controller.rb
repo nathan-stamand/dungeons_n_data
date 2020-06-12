@@ -25,15 +25,7 @@ class CharactersController < ApplicationController
   def show
     @character = Character.find_by(id: params[:id])
     @creator = @character.player
-    if params[:character]
-      @character.take_damage(params[:character][:damage])
-      @old_campaign = Campaign.find_by(id: params[:character][:old_campaign_id])
-      @campaign = Campaign.find_by(id: params[:character][:campaign_id])
-      @character.campaign = @campaign
-      @old_campaign.save if @old_campaign
-      @campaign.save if @campaign
-      @character.save
-    end
+    @character.update_damage_and_campaign(params)
   end
 
   def edit
