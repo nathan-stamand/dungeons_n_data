@@ -25,8 +25,8 @@ class DndSessionsController < ApplicationController
   end
 
   def edit
-    @campaign = Campaign.find_by(id: params[:campaign_id])
     @dnd_session = DndSession.find_by(id: params[:id])
+    @campaign = @dnd_session.campaign
     @creator = @campaign.dungeon_master
   end
 
@@ -37,7 +37,7 @@ class DndSessionsController < ApplicationController
     if @dnd_session.update(dnd_session_params)
       redirect_to campaign_dnd_session_path(@campaign, @dnd_session)
     else  
-      render edit_dnd_session_path(@dnd_session)
+      render "edit"
     end
   end
 
