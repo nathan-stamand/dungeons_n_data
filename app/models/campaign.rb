@@ -10,9 +10,13 @@ class Campaign < ApplicationRecord
 
   def add_player(params)
     if params[:campaign][:players] != ""
-        @player = User.find_by(id: params[:campaign][:players])
-        @join = PlayerCampaign.create(user_id: @player.id, campaign_id: self.id)
+        @player = User.find_by(username: params[:campaign][:players])
+        @join = PlayerCampaign.create(user_id: @player.id, campaign_id: self.id) if @player
     end
+  end
+
+  def save_and_add_players(params)
+    self.save && self.add_player(params)
   end
 
   def set_sessions(params)
@@ -26,6 +30,20 @@ class Campaign < ApplicationRecord
       notes > 0 ? sessions.recently_changed.with_notes : sessions.recently_changed
     when time_filter == ""
       notes > 0 ? sessions.with_notes : sessions
+    end
+  end
+
+  def removals(params)
+    case
+    when params[:remove_character] 
+      character = Character.find_by(id: params[:remove_character])
+      self.characters.delete_by(id: character.id)
+      self.save
+    when params[:remove_player]
+      player = User.find_by(id: params[:remove_player])
+      self.players.delete(player)
+      self.characters.delete_by(user_id: player.id)
+      self.save
     end
   end
 end
