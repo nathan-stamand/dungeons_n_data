@@ -4,8 +4,9 @@
 
 <p>Race: <%= @character.race %></p>
 <p>Class: <%= @character.character_class %><p>
+<p>Alignment: <%= @character.alignment %></p>
 <p>Max Hit Points: <%= @character.max_hit_points %></p>
-<p>Current Campaign: <%= @character.campaign.title if @character.campaign %></p><br>
+<p>Current Campaign: <%= link_to @character.campaign.title, user_campaign_path(@creator, @character.campaign) if @character.campaign %></p><br>
 
 <% if check %>
   <p>Current Hit Points: <%= @character.current_hit_points %>
