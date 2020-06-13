@@ -1,5 +1,9 @@
 class SessionsController < ApplicationController 
 
+  def new
+    render "users/login"
+  end
+  
   def create 
     @user = User.find_by(username: params[:user][:username])
     if @user.try(:authenticate, params[:user][:password])
@@ -9,7 +13,12 @@ class SessionsController < ApplicationController
       flash[:message] = "Sorry, login info was incorrect. Please try again."
       redirect_to login_path 
     end
-  end 
+  end
+
+  def destroy
+    session.delete :user_id
+    redirect_to root_path
+  end
 
   def omniauth
     @user = User.find_or_create_by(email: auth[:info][:email]) do |u|
