@@ -20,7 +20,7 @@
 
     <p>
         <%= f.label :level %><br>
-        <%= f.number_field :level %>
+        <%= f.number_field :level, min: 0, max: 20 %>
     </p>
 
     <p>
@@ -40,7 +40,7 @@
 
     <p>
         <%= f.label :max_hit_points %><br>
-        <%= f.number_field :max_hit_points %>
+        <%= f.number_field :max_hit_points, min: 0 %>
     </p>
 
     <p><%= f.submit %></p>
