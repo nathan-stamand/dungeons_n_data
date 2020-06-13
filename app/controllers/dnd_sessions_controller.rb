@@ -1,5 +1,5 @@
 class DndSessionsController < ApplicationController
-  before_action :assign_variables
+  before_action :assign_variables, except: [:create]
 
   def index
     @sessions = @campaign.set_sessions(params) || @campaign.dnd_sessions
@@ -41,7 +41,6 @@ class DndSessionsController < ApplicationController
   def destroy
     @dnd_session.destroy if check 
     @campaign.save
-    binding.pry
     redirect_to campaign_path(@campaign)
   end
 
@@ -51,7 +50,7 @@ class DndSessionsController < ApplicationController
     params.require(:dnd_session).permit(:start_time, :end_time, :place, :date, :campaign_id, :dm_notes)
   end
 
-  def assign_variables 
+  def assign_variables
     @dnd_session = DndSession.find_by(id: params[:id])
     @campaign = Campaign.find_by(id: params[:campaign_id]) || @dnd_session.campaign
     @creator = @campaign.dungeon_master
