@@ -22,7 +22,7 @@ class Campaign < ApplicationRecord
   def set_sessions(params)
     time_filter = params[:dnd_session]
     notes = params[:dm_notes].to_i
-    sessions = self.dnd_sessions
+    sessions = dnd_sessions
     case
     when time_filter == "Created Last 30 Days" 
       notes > 0 ? sessions.recently_made.with_notes : sessions.recently_made
@@ -37,12 +37,12 @@ class Campaign < ApplicationRecord
     case
     when params[:remove_character] 
       character = Character.find_by(id: params[:remove_character])
-      self.characters.delete_by(id: character.id)
+      characters.delete_by(id: character.id)
       self.save
     when params[:remove_player]
       player = User.find_by(id: params[:remove_player])
-      self.players.delete(player)
-      self.characters.delete_by(user_id: player.id)
+      players.delete(player)
+      characters.delete_by(user_id: player.id)
       self.save
     end
   end
