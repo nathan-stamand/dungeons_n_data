@@ -18,31 +18,31 @@ class Character < ApplicationRecord
   end
 
   def damageable
-    self.damage = 0
-    self.current_hit_points = self.max_hit_points
+    damage = 0
+    current_hit_points = max_hit_points
   end
 
   def damage_limiter
     case
-    when self.current_hit_points > self.max_hit_points
-      self.current_hit_points = self.max_hit_points
-      self.damage = 0
-    when self.current_hit_points < (self.max_hit_points * -1)
-      self.current_hit_points = (self.max_hit_points * -1)
-      self.damage = self.max_hit_points * 2
+    when current_hit_points > max_hit_points
+      current_hit_points = max_hit_points
+      damage = 0
+    when current_hit_points < (max_hit_points * -1)
+      current_hit_points = (max_hit_points * -1)
+      damage = max_hit_points * 2
     end
   end
 
   def take_damage(damage)
-    self.damage += damage.to_i
-    self.current_hit_points = self.max_hit_points - self.damage
-    self.damage_limiter
+    damage += damage.to_i
+    current_hit_points = max_hit_points - damage
+    damage_limiter
   end
 
   def assign_campaign(params)
     @old_campaign = Campaign.find_by(id: params[:character][:old_campaign_id])
     @new_campaign = Campaign.find_by(id: params[:character][:campaign_id])
-    self.campaign = @new_campaign
+    campaign = @new_campaign
     @old_campaign.save if @old_campaign 
     @new_campaign.save if @new_campaign
   end
@@ -51,8 +51,8 @@ class Character < ApplicationRecord
     if params[:character]
       damage = params[:character][:damage]
       campaign = params[:character][:campaign_id]
-      self.assign_campaign(params) if campaign
-      self.take_damage(params[:character][:damage]) if damage
+      assign_campaign(params) if campaign
+      take_damage(params[:character][:damage]) if damage
       self.save
     end
   end
