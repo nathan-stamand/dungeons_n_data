@@ -1,4 +1,5 @@
 class CharactersController < ApplicationController
+  before_action :assign_variables, except: [:index, :new, :create,]
     
   def index
     @creator = User.find_by(id: params[:user_id])
@@ -23,18 +24,13 @@ class CharactersController < ApplicationController
   end
 
   def show
-    @character = Character.find_by(id: params[:id])
-    @creator = @character.player
     @character.update_damage_and_campaign(params)
   end
 
   def edit
-    @character = Character.find_by(id: params[:id])
-    @creator = @character.player
   end
 
   def update
-    @character = Character.find_by(id: params[:id])
     @character.update(character_params)
     if @character.save
       redirect_to character_path(@character)
@@ -44,8 +40,6 @@ class CharactersController < ApplicationController
   end
 
   def destroy
-    @character = Character.find_by(id: params[:id])
-    @creator = @character.player
     @character.destroy if check
     redirect_to user_characters_path(@creator)
   end
@@ -56,5 +50,10 @@ class CharactersController < ApplicationController
     params.require(:character).permit(:name, :level, :character_class,
                                       :race, :max_hit_points, :alignment,
                                       :campaign_id)
+  end
+
+  def assign_variables
+    @character = Character.find_by(id: params[:id])
+    @creator = @character.player if @character
   end
 end
