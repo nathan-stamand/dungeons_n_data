@@ -6,8 +6,8 @@ class User < ApplicationRecord
   has_many :player_campaigns
   has_many :play_campaigns, through: :player_campaigns
   has_many :characters, dependent: :destroy
-  validates :email, presence: :true
-  validates :username, presence: :true
+  validates :email, presence: :true, uniqueness: true
+  validates :username, presence: :true, uniqueness: true
   has_secure_password
 
   def clean_list(array)
