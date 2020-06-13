@@ -1,4 +1,18 @@
 <%= form_with model: @dnd_session, local: true do |f| %>
+  <% if @dnd_session.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@dnd_session.errors.count, "error") %> prohibited
+        this DND Session from being saved:
+      </h2>
+      <ul>
+        <% @dnd_session.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
   <%= f.label :date %>
   <%= f.date_field :date, value: "#{@dnd_session.date}" %><br><br>
 
