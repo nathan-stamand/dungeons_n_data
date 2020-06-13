@@ -10,18 +10,22 @@ class User < ApplicationRecord
   validates :username, presence: :true
   has_secure_password
 
+  def clean_list(array)
+    clean_list = []
+    array.each do |campaign|
+      clean_list << campaign.dungeon_master
+      clean_list << campaign.players
+    end
+    clean_list.flatten.uniq - [self]
+  end
+
   def friends 
     friends = []
-    if self.play_campaigns
-      self.play_campaigns.each do |campaign| 
-        friends << campaign.dungeon_master
-        friends << campaign.players 
-      end 
+    if play_campaigns
+      friends << clean_list(play_campaigns)
     end
-    if self.created_campaigns 
-      self.created_campaigns.each do |campaign|
-        friends << campaign.players
-      end
+    if created_campaigns 
+      friends << clean_list(created_campaigns)
     end
     friends = friends.flatten.uniq - [self]
   end
