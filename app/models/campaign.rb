@@ -3,7 +3,7 @@ class Campaign < ApplicationRecord
     belongs_to :dungeon_master,
                :class_name => "User",
                :foreign_key => :user_id
-    has_many :player_campaigns, dependent: :destroy
+    has_many :player_campaigns, dependent: :delete_all
     has_many :players, through: :player_campaigns
     has_many :characters
     validates :title, presence: true
