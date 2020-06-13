@@ -19,4 +19,6 @@
 <% end %>
 <br><br>
 
-<%= link_to "Back to #{@campaign.title}'s sessions", campaign_dnd_sessions_path(@campaign) %>
+<%= link_to "#{@campaign.title}'s sessions", campaign_dnd_sessions_path(@campaign) %><br><br>
+
+<%= link_to "#{@campaign.title} page", user_campaign_path(@creator, @campaign) %>
