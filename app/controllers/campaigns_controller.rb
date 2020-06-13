@@ -1,5 +1,5 @@
 class CampaignsController < ApplicationController
-  before_action :assign_variables
+  before_action :assign_variables, except: [:index]
   before_action :delete_doubles
 
   def index
@@ -53,7 +53,7 @@ class CampaignsController < ApplicationController
 
   def assign_variables
     @campaign = Campaign.find_by(id: params[:id])
-    @creator = @campaign.dungeon_master if @campaign
+    @creator = @campaign ? @campaign.dungeon_master : User.find_by(id: params[:user_id])
   end
 
   def delete_doubles
