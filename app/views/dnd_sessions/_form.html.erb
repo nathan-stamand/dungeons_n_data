@@ -1,4 +1,4 @@
-<%= form_with model: @dnd_session, local: true do |f| %>
+<%= form_for @dnd_session do |f| %>
   <% if @dnd_session.errors.any? %>
     <div id="error_explanation">
       <h2>
