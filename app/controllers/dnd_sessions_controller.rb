@@ -28,6 +28,7 @@ class DndSessionsController < ApplicationController
   end
 
   def update
+    @dnd_session.find_hours(params)
     if @dnd_session.update(dnd_session_params)
       redirect_to campaign_dnd_session_path(@campaign, @dnd_session)
     else  
