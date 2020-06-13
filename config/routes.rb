@@ -1,17 +1,20 @@
 Rails.application.routes.draw do
   get '/', to: "home#index"
   root "home#index"
+
   patch "/characters/:id" => "characters#show"
   resources :characters
+
   resources :dnd_sessions
-  get '/auth/google_oauth2/callback' => 'sessions#omniauth'
   resources :campaigns do 
     resources :dnd_sessions 
-  end 
+  end
 
-  get "/users/login", to: "users#login"
-  post "/users/login", to: "users#login"
-  get "/users/logout", to: "users#logout"
+  get '/auth/google_oauth2/callback' => 'sessions#omniauth'
+  get "/users/login", to: "sessions#new"
+  post "/users/login", to: "sessions#create"
+  delete "logout", to: "sessions#destroy"
+
   resources :users do
     resources :characters
     resources :campaigns
