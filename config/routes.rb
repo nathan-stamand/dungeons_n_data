@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   get '/', to: "home#index"
   root "home#index"
 
-  patch "/characters/:id" => "characters#show"
   resources :characters
 
   resources :dnd_sessions
