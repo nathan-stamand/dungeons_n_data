@@ -1,5 +1,5 @@
 class CharactersController < ApplicationController
-  before_action :assign_variables, except: [:index, :new, :create,]
+  before_action :assign_variables, except: [:index, :new, :create]
     
   def index
     @creator = User.find_by(id: params[:user_id])
@@ -11,7 +11,7 @@ class CharactersController < ApplicationController
     @creator = User.find_by(id: params[:user_id])
   end
 
-  def create 
+  def create
     @character = Character.new(character_params)
     @character.player = current_user
     @creator = @character.player
@@ -24,7 +24,6 @@ class CharactersController < ApplicationController
   end
 
   def show
-    @character.update_damage_and_campaign(params)
   end
 
   def edit
@@ -33,6 +32,7 @@ class CharactersController < ApplicationController
   def update
     @character.update(character_params)
     if @character.save
+      @character.update_damage_and_campaign(params)
       redirect_to character_path(@character)
     else
       render edit_character_path(@character)
