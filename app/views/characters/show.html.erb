@@ -24,7 +24,7 @@
     <%= f.submit "Assign to Campaign" %>
   <% end %><br>
 
-    <%= button_to 'Edit', edit_character_path(@character), method: :get %><br>
+    <%= button_to 'Edit', edit_user_character_path(@creator, @character), method: :get %><br>
 
     <%= button_to 'Delete', character_path(@character), method: :delete, data: {confirm: "Are you sure??"} %>
 <% end %>
