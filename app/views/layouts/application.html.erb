@@ -11,10 +11,10 @@
 
   <body>
   <% if logged_in? %>
-    <%= link_to "Home", user_path(current_user) %>
-    <%= link_to "Logout", logout_path, {:method => :delete} %>
-    <%= link_to "My Campaigns", user_campaigns_path(current_user) %>
-    <%= link_to "My Characters", user_characters_path(current_user) %>
+    <%= link_to "Home", user_path(current_user) if current_user %>
+    <%= link_to "Logout", logout_path, {:method => :delete} if current_user %>
+    <%= link_to "My Campaigns", user_campaigns_path(current_user) if current_user %>
+    <%= link_to "My Characters", user_characters_path(current_user) if current_user %>
   <% end %>
   
     <%= yield %>
