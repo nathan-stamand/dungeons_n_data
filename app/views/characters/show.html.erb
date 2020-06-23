@@ -27,4 +27,6 @@
     <%= button_to 'Edit', edit_user_character_path(@creator, @character), method: :get %><br>
 
     <%= button_to 'Delete', character_path(@character), method: :delete, data: {confirm: "Are you sure??"} %>
+<% else %>
+  <%= link_to "#{@creator.username}'s Characters", user_characters_path(@creator) %>
 <% end %>
