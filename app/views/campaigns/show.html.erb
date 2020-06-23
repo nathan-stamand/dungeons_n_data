@@ -10,9 +10,8 @@
 <% if @campaign.players.any? %>
 <h3>Players</h3>
   <% @campaign.players.each do |player| %>
-    <%= link_to player.username, user_path(player) %>
-    <%= link_to "remove", user_campaign_path(user_id: @creator.id, id: @campaign.id, remove_player: player.id) if check %>
-    <br>
+    <p><%= link_to player.username, user_path(player) %>
+    <%= link_to "remove", user_campaign_path(user_id: @creator.id, id: @campaign.id, remove_player: player.id) if check %></p>
   <% end %>
 <% end %>
 
