@@ -11,7 +11,7 @@ class Campaign < ApplicationRecord
   def add_player(params)
     if params[:campaign][:players] != ""
         @player = User.find_by(username: params[:campaign][:players])
-        @join = PlayerCampaign.create(user_id: @player.id, campaign_id: self.id) if @player
+        @join = PlayerCampaign.create(user_id: @player.id, campaign_id: self.id, date_joined: Time.now) if @player
     end
   end
 
