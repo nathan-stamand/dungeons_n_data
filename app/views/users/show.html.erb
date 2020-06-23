@@ -1,5 +1,12 @@
 <h1><%= @user.username %></h1>
 
+<% if flash[:message] %>
+<div class="alert">
+  <%= flash[:message] %><br><br>
+</div>
+  <% flash[:message].clear %>
+<% end %>
+
 <%= link_to "Campaigns", user_campaigns_path(@user) %> ||
 <%= link_to "Characters", user_characters_path(@user) %>
 
