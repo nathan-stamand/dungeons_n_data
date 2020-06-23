@@ -21,3 +21,7 @@
     </li>
   <% end %>
 </ul>
+
+<% if !check %>
+  <%= link_to "#{@creator.username}'s Homepage", user_path(@creator) %>
+<% end %>
