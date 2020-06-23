@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    @user = User.find_by(id: session[:user_id])
+    @user ||= User.find_by(id: session[:user_id])
   end
 
   def check
@@ -23,6 +23,7 @@ class ApplicationController < ActionController::Base
     if check
       render '_form', :layout => false
     else
+      flash[:message] = "Permission Denied: Cannot edit other users' content!"
       redirect_to user_path(current_user)
     end
   end
