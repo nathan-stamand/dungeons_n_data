@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_09_163058) do
+ActiveRecord::Schema.define(version: 2020_06_23_194037) do
 
   create_table "campaigns", force: :cascade do |t|
     t.string "title"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 2020_06_09_163058) do
   create_table "player_campaigns", force: :cascade do |t|
     t.integer "user_id"
     t.integer "campaign_id"
+    t.datetime "date_joined"
   end
 
   create_table "users", force: :cascade do |t|
