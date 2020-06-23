@@ -18,7 +18,7 @@
     <%= f.text_field :title %><br>
     </p>
 
-
+  <%= f.label :players %><br>
   <%= f.text_field :players, list: "users_autocomplete", value: nil %>
   <datalist id="users_autocomplete" name="player[username]">
     <% player_select.each do |player| %>
