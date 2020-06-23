@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
       redirect_to user_path(@user)
     else 
       flash[:message] = "Sorry, login info was incorrect. Please try again."
-      redirect_to login_path 
+      redirect_to users_login_path 
     end
   end
 
