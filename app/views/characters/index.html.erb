@@ -1,4 +1,4 @@
-<h1><%= @creator.username %>'s Characters</h1>
+<h1><%= @creator.username if @creator%> Characters</h1>
 
 <% if check %>
   <%= link_to "Add Character", new_user_character_path(@creator)%><br>
@@ -7,12 +7,12 @@
 <% if @characters %>
   <% @characters.each do |char| %>
   <li>
-  <%= link_to char.name, user_character_path(@creator, char) %>
+  <%= link_to char.name, user_character_path(char.player, char) %>
   </li>
   <% end %>
 <% end %>
 
 <br>
-<% if !check %>
+<% if !check && @creator %>
   <%= link_to "#{@creator.username}'s Homepage", user_path(@creator) %>
 <% end %>

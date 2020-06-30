@@ -3,7 +3,11 @@ class CharactersController < ApplicationController
     
   def index
     @creator = User.find_by(id: params[:user_id])
-    @characters = @creator.characters
+    if !@creator
+      @characters = Character.all
+    else
+      @characters = @creator.characters
+    end
   end
     
   def new
