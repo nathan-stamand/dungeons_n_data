@@ -8,6 +8,7 @@ gem 'dotenv-rails'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'pry'
+gem "actionpack", ">= 6.0.3.2"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.1'
 # Use sqlite3 as the database for Active Record
