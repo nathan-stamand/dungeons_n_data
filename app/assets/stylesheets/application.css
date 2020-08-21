@@ -6,3 +6,14 @@ body {
   max-width: 60%;
   display: inline-block;
 }
+
+a.google-sign-in {
+  background: rgb(255, 255, 255);
+  color: #385fca;
+  border-width: 2px;
+  border-color: #385fca;
+}
+
+.alert {
+  color: red;
+}
