@@ -1,3 +1,8 @@
 body {
   background-color: rgb(201, 201, 201);
 }
+
+.btn {
+  max-width: 60%;
+  display: inline-block;
+}
