@@ -1,32 +1,3 @@
-/* body {
-  background-color: #BFB0AF;
+body {
+  background-color: rgb(201, 201, 201);
 }
-
-h1, h2, h3, h4, h5 {
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  color: #072e4e;
-}
-
-p, label{
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  color: #072e4e;
-}
-
-a {
-  color: #754846;
-}
-
-.button_to input {
-  background-color: #b9733170;
-  color: #000000;
-}
-
-form > div#error_explanation, div#error_explanation > h2, div.alert {
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  color: #ad4241; 
-}
-
-input, select {
-  background-color: #79626279;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-} */
