@@ -3,7 +3,7 @@ body {
 }
 
 .btn {
-  max-width: 60%;
+  max-width: 50%;
   display: inline-block;
 }
 
@@ -16,4 +16,16 @@ a.google-sign-in {
 
 .alert {
   color: red;
+}
+
+#my-campaigns-btn {
+  background-color: black;
+}
+
+#my-characters-btn {
+  background-color: white;
+}
+
+.text-responsive {
+  font-size: calc(50% + 1vw + 2vh);
 }
