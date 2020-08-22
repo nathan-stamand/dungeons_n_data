@@ -1,20 +1,30 @@
-<h1><%= @user.username %></h1>
+
+<h1 class="text-center text-responsive"><%= @user.username %></h1>
 
 <% if flash[:message] %>
-<div class="alert">
+<div class="alert text-center">
   <%= flash[:message] %><br><br>
 </div>
   <% flash[:message].clear %>
 <% end %>
 
-<%= link_to "Campaigns", user_campaigns_path(@user) %> ||
-<%= link_to "Characters", user_characters_path(@user) %>
-
-<% if @user.friends %>
-<h4>Friends</h3>
-  <% @user.friends.each do |friend| %>
-    <li>
-    <%= link_to friend.username, user_path(friend) %>
-    </li>
+<div class="btn-group d-inline">
+  <%= link_to(user_campaigns_path(@user), {class: "btn", id: "my-campaigns-btn"}) do %>
+    <span class="text-white">Campaigns <i class="fas fa-dungeon"></i></span>
   <% end %>
-<% end %>
+
+  <%= link_to(user_characters_path(@user), {class: "btn", id: "my-characters-btn"}) do %>
+    <span class="text-black">Characters <i class="fas fa-hat-wizard"></i></span>
+  <% end %>
+</div>
+
+<div class="friends m-3">
+  <% if @user.friends %>
+  <h4>Friends</h3>
+    <% @user.friends.each do |friend| %>
+      <li>
+      <%= link_to friend.username, user_path(friend) %>
+      </li>
+    <% end %>
+  <% end %>
+</div>

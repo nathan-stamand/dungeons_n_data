@@ -1,25 +1,19 @@
-<div class="container-fluid vh-100 row text-center top">
-  <div class="col-2 bg-secondary"></div>
-  <div class="col-8 main">
-    <h1 class="my-3 row-1">DUNGEONS 'N' DATA</h1>
+<div class="container my-3">
+  <%= link_to(new_user_path, {class: "btn btn-secondary btn-block"}) do %>
+    <span>Sign-In <i class="fas fa-user-plus"></i></span>
+  <% end %>
+  <%= link_to(users_login_path, {class: "btn btn-primary btn-block my-1"}) do %>
+    <span>Log In <i class="fas fa-sign-in-alt"></i></span>
+  <% end %>
+  <%= link_to("/auth/google_oauth2", {class: "btn btn-outline-dark btn-block mt-2s google-sign-in"}) do %>
+    <img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+    <span>Sign Up with Google</span> 
+  <% end %>
+</div>
 
-    <div class="container my-3">
-      <%= link_to(new_user_path, {class: "btn btn-secondary btn-block"}) do %>
-        <span>Sign-In <i class="fas fa-user-plus"></i></span>
-      <% end %>
-      <%= link_to(users_login_path, {class: "btn btn-primary btn-block my-1"}) do %>
-        <span>Log In <i class="fas fa-sign-in-alt"></i></span>
-      <% end %>
-    </div>
-
-    <div class="bg-white my-3">
-      <h3>Welcome to Dungeons'n'Data!</h3>
-      <p>
-        Use this app as a DM or as a player to help you organize your campaigns and characters!
-        Create an account to start making campaigns and characters, track and plan sessions, and 
-        track your characters' stats and health -- all from one place!
-      </p>
-    </div>
-  </div>
-  <div class="col-2 bg-secondary"></div>
+<div class="bg-white my-3 d-block d-md-none">
+  <h3>Welcome to Dungeons'n'Data!</h3>
+  <p>
+    Dungeon Masters and players unite to organize their campaigns and characters!
+  </p>
 </div>
