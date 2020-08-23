@@ -1,5 +1,7 @@
 body {
   background-color: rgb(201, 201, 201);
+  background: url('washed-bricks.png') no-repeat center center fixed;
+  background-size: cover;
 }
 
 .btn {
@@ -27,5 +29,16 @@ a.google-sign-in {
 }
 
 .text-responsive {
-  font-size: calc(50% + 1vw + 2vh);
+  font-size: calc(100% + 1vw + 2vh);
+}
+
+img.mountain {
+  border-bottom-style: solid;
+  border-width: 1em;
+  border-color: rgb(57, 61, 66);
+}
+
+ul {
+  list-style: none;
+  padding: 0;
 }

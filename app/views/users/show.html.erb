@@ -21,10 +21,14 @@
 <div class="friends m-3">
   <% if @user.friends %>
   <h4>Friends</h3>
+  <ul>
     <% @user.friends.each do |friend| %>
       <li>
-      <%= link_to friend.username, user_path(friend) %>
+      <%= link_to(user_path(friend), class: "btn btn-block bg-secondary text-white mt-2") do %>
+        <span><%= friend.username %></span>
+      <% end %>
       </li>
     <% end %>
   <% end %>
+  </ul>
 </div>

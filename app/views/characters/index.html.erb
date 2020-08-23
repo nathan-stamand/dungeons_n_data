@@ -1,15 +1,24 @@
-<h1><%= @creator.username if @creator%> Characters</h1>
+<h1 class="text-responsive"><%= @creator.username if @creator%> Characters</h1>
 
 <% if check %>
-  <%= link_to "Add Character", new_user_character_path(@creator)%><br>
+  <div class="btn-container">
+    <%= link_to(new_user_character_path(@creator), {class: "btn btn-block bg-dark text-white"}) do %>
+      <span>Add Character <i class="fas fa-dice-d20"></i></span>
+    <% end %>
+  </div>
 <% end %>
 
 <% if @characters %>
-  <% @characters.each do |char| %>
-  <li>
-  <%= link_to char.name, user_character_path(char.player, char) %>
-  </li>
-  <% end %>
+  <ul class="mt-5 text-center">
+  <h4>Character List:</h4>
+    <% @characters.each do |char| %>
+    <li>
+      <%= link_to(user_character_path(char.player, char), {class: "btn btn-block btn-secondary mt-2"}) do %>
+        <span><%= char.name %></span>
+      <% end %>
+    </li>
+    <% end %>
+  </ul>
 <% end %>
 
 <br>
