@@ -1,4 +1,4 @@
-<h1><%= @creator.username %>'s Campaigns</h1>
+<h1 class="text-responsive"><%= @creator.username %>'s Campaigns</h1>
 
 <% if check %>
   <%= link_to(new_user_campaign_path(@user), {method: :get, class: "btn btn-block bg-white text-dark"}) do %>
@@ -6,7 +6,7 @@
   <% end %>
 <% end %>
 
-<h3 class="mt-3">Created Campaigns</h3>
+<h4 class="mt-5">Created Campaigns:</h4>
 <ul>
   <% @created_campaigns.each do |campaign| %>
     <li>
@@ -17,7 +17,7 @@
   <% end %>
 </ul><br>
 
-<h3>Play Campaigns</h1>
+<h4>Play Campaigns:</h4>
 <ul>
   <% @play_campaigns.each do |campaign| %>
     <li>
