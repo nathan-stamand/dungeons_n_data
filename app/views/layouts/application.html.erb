@@ -11,12 +11,14 @@
   </head>
 
   <body>
-    <nav class="bg-dark container-fluid row text-center">
+    <nav role="navigation" class="navbar navbar-expand-sm bg-dark">
       <% if logged_in? %>
-        <%= link_to("Home", user_path(current_user), {class: "text-white mx-2"}) if current_user %>
-        <%= link_to("Logout", logout_path, {:method => :delete, class: "text-white mx-2"}) if current_user %>
-        <%= link_to("My Campaigns", user_campaigns_path(current_user), {class: "text-white mx-2"}) if current_user %>
-        <%= link_to("My Characters", user_characters_path(current_user), {class: "text-white mx-2"}) if current_user %>
+      <ul class="navbar-nav">
+        <li role="nav-item active"><%= link_to("Home", user_path(current_user), {class: "nav-link text-white mx-2"}) if current_user %></li>
+        <li role="nav-item active"><%= link_to("Logout", logout_path, {:method => :delete, class: "nav-link text-white mx-2"}) if current_user %></li>
+        <li role="nav-item active"><%= link_to("My Campaigns", user_campaigns_path(current_user), {class: "nav-link text-white mx-2"}) if current_user %></li>
+        <li role="nav-item active"><%= link_to("My Characters", user_characters_path(current_user), {class: "nav-link text-white mx-2"}) if current_user %></li>
+      </ul>
       <% else %>
         <%= image_tag('Mountain.jpg', {alt: "Dungeons 'n' Data", class: "col-md-12 mountain d-none d-md-block"}) if Time.now.hour <= 17 %>
         <%= image_tag('Mountain (1).jpg', {alt: "Dungeons 'n' Data", class: "col-md-12 mountain dark d-none d-md-block"}) if Time.now.hour > 17 %>
