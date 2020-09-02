@@ -37,7 +37,7 @@ class Campaign < ApplicationRecord
     case
     when params[:remove_character] 
       character = Character.find_by(id: params[:remove_character])
-      characters.delete_by(id: character.id)
+      self.characters = self.characters.filter {|char| char.id != character.id}
       self.save
     when params[:remove_player]
       player = User.find_by(id: params[:remove_player])
