@@ -12,23 +12,26 @@
 
 ActiveRecord::Schema.define(version: 2020_06_23_194037) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "campaigns", force: :cascade do |t|
-    t.string "title"
+    t.text "title"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
-    t.string "description"
+    t.text "description"
   end
 
   create_table "characters", force: :cascade do |t|
-    t.string "name"
+    t.text "name"
     t.integer "level"
-    t.string "character_class"
-    t.string "race"
+    t.text "character_class"
+    t.text "race"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
-    t.string "alignment"
+    t.text "alignment"
     t.integer "max_hit_points"
     t.integer "current_hit_points"
     t.integer "damage"
@@ -36,15 +39,15 @@ ActiveRecord::Schema.define(version: 2020_06_23_194037) do
   end
 
   create_table "dnd_sessions", force: :cascade do |t|
-    t.string "place"
-    t.string "start_time"
-    t.string "hours"
+    t.text "place"
+    t.text "start_time"
+    t.text "hours"
     t.integer "campaign_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "end_time"
-    t.string "date"
-    t.string "dm_notes"
+    t.text "end_time"
+    t.text "date"
+    t.text "dm_notes"
   end
 
   create_table "player_campaigns", force: :cascade do |t|
@@ -54,12 +57,12 @@ ActiveRecord::Schema.define(version: 2020_06_23_194037) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "username"
-    t.string "password_digest"
-    t.string "email"
+    t.text "username"
+    t.text "password_digest"
+    t.text "email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "uid"
+    t.text "uid"
   end
 
 end
