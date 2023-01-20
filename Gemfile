@@ -11,7 +11,7 @@ gem 'omniauth-google-oauth2'
 gem 'pry'
 gem "actionpack", ">= 6.0.3.2"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 6.0.3', '>= 6.0.3.1'
+gem 'rails', '~> 7.0.4'
 # Use PostgreSql as the database for Active Record
 gem 'pg'
 # Use Puma as the app server
